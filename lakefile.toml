@@ -1,0 +1,10 @@
+name = "myfmclearn"
+version = "0.1.0"
+defaultTargets = ["myfmclearn"]
+
+[[lean_lib]]
+name = "Myfmclearn"
+
+[[lean_exe]]
+name = "myfmclearn"
+root = "Main"
