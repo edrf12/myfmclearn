@@ -104,8 +104,16 @@ theorem contrapositive_law :
 
 theorem lem_irrefutable :
   ¬ ¬ (P ∨ ¬ P)  := by
-  sorry
-
+  intro lem
+  have ponp : P ∨ ¬ P := by
+    right
+    intro p
+    have ponp' : P ∨ ¬ P := by
+      left
+      exact p
+    have boom := lem ponp'
+    exact boom -- Podiamos substituir essas duas linhas simplesmente por contradiction 
+  contradiction -- Esse contradicion faz a mesma coisa das duas linhas anteriores
 
 ------------------------------------------------
 -- Peirce's law
