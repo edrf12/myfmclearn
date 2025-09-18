@@ -242,20 +242,27 @@ theorem impl_refl :
 
 theorem weaken_disj_right :
   P → (P ∨ Q)  := by
-  sorry
+  intro p
+  left
+  exact p
 
 theorem weaken_disj_left :
   Q → (P ∨ Q)  := by
-  sorry
+  intro q
+  right
+  exact q
 
 theorem weaken_conj_right :
   (P ∧ Q) → P  := by
-  sorry
+  intro paq
+  rcases paq with ⟨p, q⟩
+  exact p
 
 theorem weaken_conj_left :
   (P ∧ Q) → Q  := by
-  sorry
-
+  intro paq
+  rcases paq with ⟨p, q⟩
+  exact q
 
 ------------------------------------------------
 -- Idempotence of ∨,∧
