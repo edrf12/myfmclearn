@@ -216,12 +216,16 @@ theorem distr_disj_conj_converse :
 
 theorem curry_prop :
   ((P ∧ Q) → R) → (P → (Q → R))  := by
-  sorry
+  intro pqir p q
+  have r := pqir ⟨p, q⟩
+  exact r
 
 theorem uncurry_prop :
   (P → (Q → R)) → ((P ∧ Q) → R)  := by
-  sorry
-
+  intro piqr paq
+  have ⟨p, q⟩ := paq
+  have r := piqr p q
+  exact r
 
 ------------------------------------------------
 -- Reflexivity of →
