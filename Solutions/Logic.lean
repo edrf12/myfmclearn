@@ -270,12 +270,25 @@ theorem weaken_conj_left :
 
 theorem disj_idem :
   (P ∨ P) ↔ P  := by
-  sorry
+  constructor
+  . intro pop
+    rcases pop with (p | p)
+    . exact p
+    . exact p
+  . intro p
+    left
+    exact p
 
 theorem conj_idem :
   (P ∧ P) ↔ P := by
-  sorry
-
+  constructor
+  . intro pap
+    rcases pap with ⟨p1, p2⟩
+    exact p1
+  . intro p
+    constructor
+    . exact p
+    . exact p
 
 ------------------------------------------------
 -- Bottom, Top
