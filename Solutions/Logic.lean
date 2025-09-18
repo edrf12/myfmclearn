@@ -9,15 +9,24 @@ variable (P Q R : Prop)
 
 theorem doubleneg_intro :
   P → ¬ ¬ P  := by
-  sorry
+  intro hp hnp
+  contradiction
+
 
 theorem doubleneg_elim :
   ¬ ¬ P → P  := by
-  sorry
+  intro nnp
+  by_cases p : P
+  . exact p
+  . have boom : False := nnp p
+    exfalso
+    exact boom
 
 theorem doubleneg_law :
   ¬ ¬ P ↔ P  := by
-  sorry
+  constructor
+  . apply doubleneg_elim
+  . apply doubleneg_intro
 
 
 ------------------------------------------------
