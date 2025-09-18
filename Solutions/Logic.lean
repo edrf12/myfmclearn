@@ -78,15 +78,24 @@ theorem disj_as_impl :
 
 theorem impl_as_contrapositive :
   (P → Q) → (¬ Q → ¬ P)  := by
-  sorry
+  intro piq nq p
+  have q := piq p
+  -- have boom := nq q can simply be ommited
+  contradiction
 
 theorem impl_as_contrapositive_converse :
   (¬ Q → ¬ P) → (P → Q)  := by
-  sorry
+  intro nqinp p
+  by_cases q : Q
+  . exact q
+  . have np := nqinp q
+    contradiction
 
 theorem contrapositive_law :
   (P → Q) ↔ (¬ Q → ¬ P)  := by
-  sorry
+  constructor
+  . apply impl_as_contrapositive
+  . apply impl_as_contrapositive_converse
 
 
 ------------------------------------------------
