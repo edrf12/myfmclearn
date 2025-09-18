@@ -296,11 +296,15 @@ theorem conj_idem :
 
 theorem false_bottom :
   False → P := by
-  sorry
+  intro boom
+  -- contradiction
+  exfalso
+  exact boom
 
 theorem true_top :
   P → True  := by
-  sorry
+  intro p
+  trivial
 
 
 end propositional
