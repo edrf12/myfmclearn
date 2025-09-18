@@ -57,11 +57,19 @@ theorem conj_comm :
 
 theorem impl_as_disj_converse :
   (¬ P ∨ Q) → (P → Q)  := by
-  sorry
+  intro npq
+  intro p
+  rcases npq with (np | q)
+  . contradiction -- We have P → ⊥ and we have p
+  . exact q
 
 theorem disj_as_impl :
   (P ∨ Q) → (¬ P → Q)  := by
-  sorry
+  intro pq
+  intro np
+  rcases pq with (p | q)
+  . contradiction -- We have P and we have P → ⊥
+  . exact q
 
 
 ------------------------------------------------
