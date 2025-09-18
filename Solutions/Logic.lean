@@ -145,11 +145,19 @@ theorem impl_linear :
 
 theorem disj_as_negconj :
   P ∨ Q → ¬ (¬ P ∧ ¬ Q)  := by
-  sorry
+  intro poq npanq
+  rcases npanq with ⟨np, nq⟩
+  rcases poq with (p | q)
+  . contradiction
+  . contradiction
 
 theorem conj_as_negdisj :
   P ∧ Q → ¬ (¬ P ∨ ¬ Q)  := by
-  sorry
+  intro paq nponq
+  rcases paq with ⟨p, q⟩
+  rcases nponq with (np | nq)
+  . contradiction
+  . contradiction
 
 
 ------------------------------------------------
