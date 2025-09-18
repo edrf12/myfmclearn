@@ -35,11 +35,20 @@ theorem doubleneg_law :
 
 theorem disj_comm :
   (P ∨ Q) → (Q ∨ P)  := by
-  sorry
+  intro pq
+  rcases pq with (p | q)
+  . right
+    exact p
+  . left
+    exact q
 
 theorem conj_comm :
   (P ∧ Q) → (Q ∧ P)  := by
-  sorry
+  intro pq
+  rcases pq with ⟨p, q⟩
+  constructor
+  . exact q
+  . exact p
 
 
 ------------------------------------------------
