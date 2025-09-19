@@ -121,7 +121,13 @@ theorem lem_irrefutable :
 
 theorem peirce_law_weak :
   ((P → Q) → P) → ¬ ¬ P  := by
-  sorry
+  intro pqip np
+  have pq : (P → Q) := by
+    apply impl_as_contrapositive_converse
+    intro nq p
+    contradiction
+  have boom := np (pqip pq)
+  contradiction
 
 
 ------------------------------------------------
