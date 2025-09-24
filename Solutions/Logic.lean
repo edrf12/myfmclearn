@@ -392,27 +392,47 @@ variable (P Q : U → Prop)
 
 theorem demorgan_exists :
   ¬ (∃ x, P x) → (∀ x, ¬ P x)  := by
-  sorry
+  intro h u pu
+  apply h
+  exists u
 
 theorem demorgan_exists_converse :
   (∀ x, ¬ P x) → ¬ (∃ x, P x)  := by
-  sorry
+  intro h he
+  have ⟨u, pu⟩ := he
+  apply h u
+  exact pu
 
 theorem demorgan_forall :
   ¬ (∀ x, P x) → (∃ x, ¬ P x)  := by
-  sorry
+  intro h
+  apply doubleneg_elim
+  intro nhe
+  apply h
+  intro x
+  apply doubleneg_elim
+  intro npx
+  apply nhe
+  exists x
 
 theorem demorgan_forall_converse :
   (∃ x, ¬ P x) → ¬ (∀ x, P x)  := by
-  sorry
+  intro he h
+  have ⟨x, npx⟩ := he
+  have px := h x
+  contradiction
 
 theorem demorgan_forall_law :
   ¬ (∀ x, P x) ↔ (∃ x, ¬ P x)  := by
-  sorry
+  constructor
+  . apply demorgan_forall
+  . apply demorgan_forall_converse
 
 theorem demorgan_exists_law :
   ¬ (∃ x, P x) ↔ (∀ x, ¬ P x)  := by
-  sorry
+  constructor
+  . apply demorgan_exists
+  . apply demorgan_exists_converse
 
 
 ------------------------------------------------
