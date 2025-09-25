@@ -441,27 +441,44 @@ theorem demorgan_exists_law :
 
 theorem exists_as_neg_forall :
   (∃ x, P x) → ¬ (∀ x, ¬ P x)  := by
-  sorry
+  intro ⟨x, px⟩ hx
+  exact hx x px
 
 theorem forall_as_neg_exists :
   (∀ x, P x) → ¬ (∃ x, ¬ P x)  := by
-  sorry
+  intro hx ⟨x, npx⟩
+  exact npx (hx x)
 
 theorem forall_as_neg_exists_converse :
   ¬ (∃ x, ¬ P x) → (∀ x, P x)  := by
-  sorry
+  intro he x
+  apply doubleneg_elim
+  intro npx
+  apply he
+  exists x
 
 theorem exists_as_neg_forall_converse :
   ¬ (∀ x, ¬ P x) → (∃ x, P x)  := by
-  sorry
+  intro hx
+  apply doubleneg_elim
+  intro nhe
+  apply hx
+  intro x px
+  apply nhe
+  exists x
 
 theorem forall_as_neg_exists_law :
   (∀ x, P x) ↔ ¬ (∃ x, ¬ P x)  := by
-  sorry
+  constructor
+  . apply forall_as_neg_exists
+  . apply forall_as_neg_exists_converse
 
 theorem exists_as_neg_forall_law :
   (∃ x, P x) ↔ ¬ (∀ x, ¬ P x)  := by
-  sorry
+  constructor
+  . apply exists_as_neg_forall
+  . apply exists_as_neg_forall_converse
+
 
 
 ------------------------------------------------
