@@ -487,28 +487,58 @@ theorem exists_as_neg_forall_law :
 
 theorem exists_conj_as_conj_exists :
   (∃ x, P x ∧ Q x) → (∃ x, P x) ∧ (∃ x, Q x)  := by
-  sorry
+  intro ⟨x, ⟨px, qx⟩⟩
+  constructor
+  . exists x
+  . exists x
+    
 
 theorem exists_disj_as_disj_exists :
   (∃ x, P x ∨ Q x) → (∃ x, P x) ∨ (∃ x, Q x)  := by
-  sorry
+  intro ⟨x, pq⟩
+  rcases pq with (px | qx)
+  . left
+    exists x
+  . right
+    exists x
 
 theorem exists_disj_as_disj_exists_converse :
   (∃ x, P x) ∨ (∃ x, Q x) → (∃ x, P x ∨ Q x)  := by
-  sorry
+  intro poq
+  rcases poq with (⟨x, px⟩ | ⟨x, pq⟩)
+  . exists x
+    left
+    exact px
+  . exists x
+    right
+    exact pq
 
 theorem forall_conj_as_conj_forall :
   (∀ x, P x ∧ Q x) → (∀ x, P x) ∧ (∀ x, Q x)  := by
-  sorry
+  intro hx
+  constructor
+  . intro x
+    have ⟨px, qx⟩ := hx x
+    exact px
+  . intro x
+    have ⟨px, qx⟩ := hx x
+    exact qx
 
 theorem forall_conj_as_conj_forall_converse :
   (∀ x, P x) ∧ (∀ x, Q x) → (∀ x, P x ∧ Q x)  := by
-  sorry
+  intro ⟨hp, hq⟩ x
+  constructor
+  . exact hp x
+  . exact hq x
 
 theorem forall_disj_as_disj_forall_converse :
   (∀ x, P x) ∨ (∀ x, Q x) → (∀ x, P x ∨ Q x)  := by
-  sorry
-
+  intro poq x
+  rcases poq with (px | qx)
+  . left
+    exact px x
+  . right
+    exact qx x
 
 end predicate
 
